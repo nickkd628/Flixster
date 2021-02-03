@@ -7,26 +7,32 @@ import com.example.flixster.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
+@Parcel
+public class movie{
 
-public class movie<ratingBar> {
 
-
-
+    int movieId;
     String backdropPath;
     String posterPath;
     String title;
     String overview;
-    double VoteAverage;
+    double rating;
+// empty constructor needed by the Parceler library
+    public movie(){
+
+    }
 
     public movie (JSONObject jsonObject) throws JSONException {
         posterPath = jsonObject.getString("poster_path");
         backdropPath = jsonObject.getString("backdrop_path");
         title =jsonObject.getString("title");
         overview= jsonObject.getString("overview");
-        this.VoteAverage= jsonObject.getDouble("vote_average");
+        rating=  jsonObject.getDouble("vote_average");
+        movieId= jsonObject.getInt("id");
 
     }
 
@@ -54,8 +60,11 @@ public class movie<ratingBar> {
         return overview;
     }
 
+    public double getRating() {
+        return rating;
+    }
 
-    public double getVoteAverage() {
-        return VoteAverage;
+    public int getMovieId() {
+        return movieId;
     }
 }
